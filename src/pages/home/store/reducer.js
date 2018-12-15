@@ -1,47 +1,37 @@
 import {fromJS} from "immutable";
+import * as constants from "./constants";
 
 const defaultState = fromJS({
-    topicList: [{
-        id: 1,
-        title: "社会热点",
-        imgUrl: "//upload.jianshu.io/users/upload_avatars/6539412/824c3d2f-b0d2-43a6-885a-d2acd37fd364.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96/format/webp",
-    }, {
-        id: 2,
-        title: "手绘",
-        imgUrl: "https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=3581792254,1787772481&fm=173&app=25&f=JPEG?w=218&h=146&s=DBACB7475B8662D2062E5B6D0300E068",
-    }, {
-        id: 3,
-        title: "程序员",
-        imgUrl: "//upload.jianshu.io/collections/images/16/computer_guy.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/64/h/64/format/webp",
-    }],
-
-    articleList: [{
-        id: 1,
-        title: "玉芳 1",
-        desc: "一九八七年初夏的一天。上午十时，河坝村谢家，张灯结彩，两扇大门贴着两个大大的喜字，门框两侧挂着两串长长的鞭炮，门口站满吃喜酒和看热闹的人。 十点...",
-        imgUrl: "//upload-images.jianshu.io/upload_images/9472959-eea8c75d1944dd37.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/360/h/240",
-    }, {
-        id: 2,
-        title: "如今Python那么火，我只推荐这两本书",
-        desc: "经常有同学问我Python入门及进阶的学习书籍，所以今天给大家分享两本书。 Python编程：从入门到实践 Python 从入门到实践，豆瓣评分...",
-        imgUrl: "//upload-images.jianshu.io/upload_images/13090773-57a0dc8eb9e76b55?imageMogr2/auto-orient/strip|imageView2/1/w/360/h/240",
-    }, {
-        id: 3,
-        title: "简书三年，得到第一笔稿费",
-        desc: "虽然对写文这件事不抱太大的功利心，但收到这样的消息心里还是蛮激动的。 《哲思》杂志的小编发简信给我，后来加了QQ，问了地址和支付宝账号，不久就收...",
-        imgUrl: "//upload-images.jianshu.io/upload_images/971008-337c9da75adc240b.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/360/h/240",
-    }, {
-        id: 4,
-        title: "在感情里，男人最不想让女人知道这些秘密，别不信",
-        desc: "我们常听说“女人心，海底针”，不过是形容女人的心思很难猜，其实男人有时候的想法也很让人费解。比如，在恋爱中，女人也会常常想“男人为什么不愿意带自...",
-        imgUrl: "//upload-images.jianshu.io/upload_images/5135554-bc6971cc0fb4a8ad?imageMogr2/auto-orient/strip|imageView2/1/w/360/h/240",
-    },]
-
+    topicList: [],
+    articleList: [],
+    recommendList: [],
+    articlePage: 1,
+    showScroll: false,
 });
+
+const changeHomeData = (state, action) => {
+    return state.merge({
+        topicList: fromJS(action.topicList),
+        articleList: fromJS(action.articleList),
+        recommendList: fromJS(action.recommendList),
+    });
+};
+
+const addArticleList = (state, action) => {
+    return state.merge({
+        "articleList": state.get("articleList").concat(action.list),
+        "articlePage": action.nextPage,
+    });
+};
 
 export default (state = defaultState, action) => {
     switch (action.type) {
-
+        case constants.CHANGE_HOME_DATA:
+            return changeHomeData(state, action);
+        case constants.ADD_ARTICLE_LIST:
+            return addArticleList(state, action);
+        case constants.SCROLL_TO_TOP_SHOW:
+            return state.set("showScroll", action.show);
         default:
             return state;
     }

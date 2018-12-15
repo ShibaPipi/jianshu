@@ -7,9 +7,7 @@ export const HeaderWrapper = styled.div`
     border-bottom: 1px solid #f0f0f0;
 `;
 
-export const Logo = styled.a.attrs({
-    href: "/",
-})`
+export const Logo = styled.div`
     position: absolute;
     top: 0;
     left: 0;
@@ -102,6 +100,7 @@ export const SearchInfo = styled.div`
     width: 200px;
     padding: 0 20px;
     border-radius: 4px;
+    background: #fff;
     box-shadow: 0 0 8px rgba(0, 0, 0, .2);
 `;
 

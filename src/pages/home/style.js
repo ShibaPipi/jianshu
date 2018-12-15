@@ -19,7 +19,7 @@ export const HomeLeft = styled.div`
 `;
 
 export const HomeRight = styled.div`
-    width: 240px;
+    width: 280px;
     margin-left: 15px;
     padding-top: 30px;
     float: right;
@@ -79,4 +79,54 @@ export const ListInfo = styled.div`
         line-height: 24px;
         color: #999;
     }
+`;
+
+export const RecommendWrapper = styled.div`
+    margin: 30px 0;
+    width: 280px;
+`;
+
+
+export const RecommendItem = styled.div`
+    width: 280px;
+    height: 50px;
+    background: url(${(props)=>props.imgUrl});
+    background-size: contain;
+`;
+
+export const WriterWrapper = styled.div`
+    width: 278px;
+    border: 1px solid #dcdcdc;
+    border-radius: 3px;
+    height: 300px;
+    line-height: 300px;
+    text-align: center;
+`;
+
+export const WriterItem = styled.div`
+    
+`;
+
+export const LoadMore = styled.div`
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    background: #a5a5a5;
+    text-align: center;
+    border-radius: 20px;
+    margin: 30px 0;
+    color: #fff;
+    cursor: pointer;
+`;
+
+export const BackToTop = styled.div`
+    position: fixed;
+    right: 100px;
+    bottom: 100px;
+    width: 60px;
+    height: 60px;
+    font-size: 12px;
+    line-height: 60px;
+    text-align: center;
+    border: 1px solid #ccc;
 `;
