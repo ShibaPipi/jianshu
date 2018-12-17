@@ -21,7 +21,6 @@ export const HomeLeft = styled.div`
 export const HomeRight = styled.div`
     width: 280px;
     margin-left: 15px;
-    padding-top: 30px;
     float: right;
 `;
 
@@ -68,14 +67,16 @@ export const ListItem = styled.div`
 export const ListInfo = styled.div`
     width: 500px;
     float: left;
-    .title {
+    .item {
         line-height: 27px;
+        margin-bottom: 4px;
         font-size: 18px;
         font-weight: bold;
         color: #333;
     }
     .desc {
         font-size: 13px;
+        margin-bottom: 8px;
         line-height: 24px;
         color: #999;
     }
@@ -86,25 +87,52 @@ export const RecommendWrapper = styled.div`
     width: 280px;
 `;
 
-
 export const RecommendItem = styled.div`
     width: 280px;
     height: 50px;
-    background: url(${(props)=>props.imgUrl});
+    background: url(${(props) => props.imgUrl});
     background-size: contain;
 `;
 
 export const WriterWrapper = styled.div`
+    overflow: hidden;
     width: 278px;
-    border: 1px solid #dcdcdc;
     border-radius: 3px;
-    height: 300px;
-    line-height: 300px;
+    padding-top: 10px;
     text-align: center;
 `;
 
-export const WriterItem = styled.div`
+export const RecommendWriter = styled.div`
+    //position: relative;
+    //left: 10px;
+    //top: 10px;
+    text-align: left;
+    font-size: 14px;
+    color: #969696;
     
+`;
+
+export const RecommendWriterSwitch = styled.div`
+    float: right;
+    display: inline-block;
+    font-size: 14px;
+    color: #969696;
+`;
+
+export const WriterItem = styled.ul`
+    margin: 0 0 20px;
+    text-align: left;
+    list-style: none;
+`;
+
+export const ViewAllWriter = styled.div`
+    padding: 10px;
+    left: 0;
+    font-size: 13px;
+    color: #787878;
+    background-color: #f7f7f7;
+    border: 1px solid #dcdcdc;
+    border-radius: 4px;
 `;
 
 export const LoadMore = styled.div`

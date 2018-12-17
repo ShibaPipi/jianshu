@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {CSSTransition} from "react-transition-group";
 import {actionCreators} from "./store";
+import {actionCreators as loginActionCreators} from "../../pages/login/store";
 import {
     HeaderWrapper,
     Logo,
@@ -60,7 +61,7 @@ class Header extends Component {
     }
 
     render() {
-        const {focused, list, handleInputFocus, handleInputBlur} = this.props;
+        const {focused, list, handleInputFocus, handleInputBlur, login, logout} = this.props;
 
         return (
             <HeaderWrapper>
@@ -70,7 +71,10 @@ class Header extends Component {
                 <Nav>
                     <NavItem className="left active">首页</NavItem>
                     <NavItem className="left">下载App</NavItem>
-                    <NavItem className="right">登录</NavItem>
+                    {
+                        login ? <NavItem className="right" onClick={logout}>退出</NavItem> :
+                            <Link to="/login"><NavItem className="right">登录</NavItem></Link>
+                    }
                     <NavItem className="right">
                         <i className="iconfont">&#xe636;</i>
                     </NavItem>
@@ -92,10 +96,12 @@ class Header extends Component {
                     </SearchWrapper>
                 </Nav>
                 <Addtion>
-                    <Button className="writing">
-                        <i className="iconfont">&#xe632;</i>
-                        写文章
-                    </Button>
+                    <Link to="/write">
+                        <Button className="writing">
+                            <i className="iconfont">&#xe632;</i>
+                            写文章
+                        </Button>
+                    </Link>
                     <Button className="reg">注册</Button>
                 </Addtion>
             </HeaderWrapper>
@@ -109,6 +115,7 @@ const mapStateToProps = (state) => ({
         page: state.getIn(["header", "page"]),
         totalPage: state.getIn(["header", "totalPage"]),
         mouseIn: state.getIn(["header", "mouseIn"]),
+        login: state.getIn(["login", "login"]),
     }
 );
 
@@ -147,6 +154,10 @@ const mapDispatchToProps = (dispatch) => {
             } else {
                 dispatch(actionCreators.changePage(1));
             }
+        },
+
+        logout() {
+            dispatch(loginActionCreators.logout());
         },
     }
 };
